@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocket Brain</title>
+<style>
+  :root { --bg:#0f1419; --card:#1b232b; --text:#eceff1; --dim:#90a4ae; --blue:#1e88e5; --green:#43a047; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:18px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  main { max-width:560px; margin:0 auto; padding:28px 16px 48px; }
+  h1 { font-size:34px; margin:0 0 4px; }
+  .tag { color:var(--dim); margin:0 0 24px; }
+  .btn { display:block; text-align:center; background:var(--blue); color:#fff; text-decoration:none;
+         font-size:22px; font-weight:700; padding:18px; border-radius:16px; }
+  .ver { text-align:center; color:var(--dim); font-size:14px; margin:8px 0 28px; }
+  .card { background:var(--card); border-radius:16px; padding:18px 20px; margin:14px 0; }
+  .card h2 { font-size:19px; margin:0 0 8px; }
+  ol { margin:0; padding-left:22px; } li { margin:6px 0; }
+  .ok { color:var(--green); font-weight:700; }
+  small { color:var(--dim); }
+</style>
+</head>
+<body>
+<main>
+  <h1>🧠 Pocket Brain</h1>
+  <p class="tag">A free, private AI helper that lives 100% on your phone. No account. No internet needed after setup. Nothing leaves your phone.</p>
+  <a class="btn" id="dl" href="pocket-brain.apk">⬇ Download for Android</a>
+  <p class="ver" id="ver">Test version</p>
+
+  <div class="card">
+    <h2>How to install</h2>
+    <ol>
+      <li>Tap the blue button above.</li>
+      <li>When the download finishes, tap it to open.</li>
+      <li>If your phone asks, tap <b>Settings</b> and turn on <b>Allow from this source</b>, then go back and tap <b>Install</b>.</li>
+      <li>Open Pocket Brain and tap <b>Get my brain</b>. Use Wi-Fi: it's a one-time 2.6 GB download.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Will it work on my phone?</h2>
+    <p class="ok">Android phones with 8 GB of memory or more.</p>
+    <small>Most phones from the last 4 to 5 years. iPhone is not supported yet.</small>
+  </div>
+
+  <div class="card">
+    <h2>Updates</h2>
+    <small>The app checks for new versions on its own and shows an "Update ready" button. Tap it and install, same as above.</small>
+  </div>
+</main>
+<script>
+  fetch('version.json?t=' + Date.now()).then(r => r.json())
+    .then(j => { document.getElementById('ver').textContent = 'Version ' + j.versionName + (j.notes ? ' · ' + j.notes : ''); })
+    .catch(() => {});
+</script>
+</body>
+</html>
